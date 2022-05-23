@@ -30,9 +30,9 @@ const routes = [
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   },
   {
-    path: '/Methylation',
-    name: 'Methylation',
-    component: () => import('../views/Tools/Methylation'),
+    path: '/Expression',
+    name: 'Expression',
+    component: () => import('../views/Tools/Expression'),
 
   },
   {

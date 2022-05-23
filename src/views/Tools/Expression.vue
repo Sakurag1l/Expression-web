@@ -94,7 +94,7 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: "Methylation",
+  name: "Expression",
   components: {},
   data() {
     return {
@@ -120,7 +120,7 @@ export default {
           expression: "300,000.00",
         },
         {
-          key: "1",
+          key: "2",
           chromosome: "John Brown",
           expression: "￥00,000.00",
         },

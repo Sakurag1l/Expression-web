@@ -12,7 +12,7 @@
             <a-menu-item key="Expression"> Expression </a-menu-item>
           </a-menu>
         </a-dropdown> -->
-        <router-link to="/Methylation">TOOLS</router-link> |
+        <router-link to="/Expression">TOOLS</router-link> |
         <router-link to="/result">RESULT</router-link> |
         <router-link to="/search">SEARCH</router-link> |
         <router-link to="/about">CONTACT</router-link>
