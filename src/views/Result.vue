@@ -158,7 +158,7 @@ export default {
 </script>
 <style scoped>
 .result {
-  /* height: 1500px; */
+  /* height: 80%; */
   /* text-align: center; */
   /* width: 80%; */
   margin: 0 auto;
