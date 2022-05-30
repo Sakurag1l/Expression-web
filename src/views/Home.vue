@@ -7,7 +7,7 @@
     <div id="components-layout-demo-basic">
       <div class="top-text" style="margin-top: 20px">
         <p style="font-size: 20px">
-          &nbsp; &nbsp;&nbsp;&nbsp;MaizeDeepCBA is a web server that integrates
+          &nbsp; &nbsp;&nbsp;&nbsp; MaizeDeepCBA is a web server that integrates
           maize chromatin interaction and deep learning models for maize Gene
           expression prediction. Based on the interaction between the proximal
           and distal ends of the maize promoter, it predicts gene expression in
@@ -80,6 +80,9 @@ export default {
   /* height: 1000px; */
   width: 80%;
   margin: 0 auto;
+}
+p::first-letter {
+  font-size: 40px;
 }
 .top-text {
   display: flex;
