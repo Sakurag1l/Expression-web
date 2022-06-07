@@ -1,6 +1,6 @@
 <!--
  * @Autor: Sakurag1_LSJ
- * @LastEditors: Sakurag1_LSJ
+ * @LastEditors: Lvshijie
 -->
 <template>
   <div class="tool">
@@ -22,59 +22,65 @@
         </h3>
         <div style="width: 70%">
           <h2>Paste one sequence(3001bp) here 👇</h2>
-          <a-textarea
-            v-model="InputSeqs"
-            placeholder="Input your Seqs"
-            :auto-size="{ minRows: 10, maxRows: 10 }"
-          />
+          <a-input-group compact>
+            <a-input prefix=">" style="width: 50%" v-model="Seq1" />
+            <a-input prefix=">" style="width: 50%" v-model="Seq2" />
+          </a-input-group>
           <a-row style="text-align: center">
             <a-col :span="6">
               <h2 style="margin-top: 6px; font-weight: bold">
                 Or load it from disk:
               </h2>
             </a-col>
-            <a-col :span="6">
-              <a-button
-                style="margin-top: 6px; width: 50%"
-                type="dashed"
-                @click="selectFile"
+            <a-col :span="2" style="margin-top: 10px">
+              <a-upload
+                :file-list="fileList"
+                :before-upload="handleChange"
+                @change="changestatue"
               >
-                select
+                <a-button> <a-icon type="upload" />Click to Upload </a-button>
+              </a-upload>
+            </a-col>
+            <a-col :span="5" style="margin-top: 5px">
+              <h1 style="float: left; margin-left: 40%">E-mail:</h1>
+            </a-col>
+            <a-col :span="6" style="margin-top: 10px">
+              <a-input style="margin-left: -50px" v-model="email" />
+            </a-col>
+            <a-col :span="4" style="margin-top: 5px">
+              <a-button
+                style="margin-top: 6px"
+                type="primary"
+                block
+                @click="submitseqs"
+              >
+                {{ uploading ? "Uploading" : "Start Upload" }}
               </a-button>
             </a-col>
           </a-row>
-          <a-button
-            style="margin-top: 6px"
-            type="primary"
-            block
-            :disabled="loading"
-            @click="submitseqs"
-          >
-            Submit
-          </a-button>
         </div>
       </div>
     </div>
     <div style="width: 80%; margin-left: 10%">
       <h1 style="font-weight: bold">Output:</h1>
 
-      <div class="contain" style="text-align: center; font-size: 30px">
+      <!-- <div class="contain" style="text-align: center; font-size: 30px">
         <a-table :columns="columns" :data-source="data" bordered>
           <template slot="name" slot-scope="text">
             <a>{{ text }}</a>
           </template>
         </a-table>
-      </div>
-      <a-button
+      </div> -->
+      <!-- <a-button
         style="margin-top: 6px; width: 20%"
         type="primary"
         @click="submitseqs"
       >
         Dowload Results
-      </a-button>
+      </a-button> -->
       <hr />
     </div>
-    <div style="width: 80%; margin-left: 10%">
+    <!-- <div style="width: 80%; margin-left: 10%">
       <h3>
         We use Saliency to show contribution scores. The family assignment rules
         (see details) and thresholds determined by established methods (see
@@ -85,7 +91,7 @@
     <div id="imgId" @click="openimg" class="showimg">
       <img style="width: 100%; height: 280px" src="../../img/CHG_TN.png" />
       <img style="width: 100%; height: 110px" src="../../img/seqs.png" />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -103,6 +109,11 @@ export default {
       loading: true,
       methltype: "CHG",
       isShowImg: false,
+      fileList: [],
+      email: "",
+      Seq1: "",
+      Seq2: "",
+      uploading: false,
       columns: [
         {
           title: "Chromosome",
@@ -128,16 +139,40 @@ export default {
     };
   },
   methods: {
-    handleChange(value) {
-      console.log(value);
+    handleChange(file) {
+      return false;
     },
     confirmtype() {
       this.loading = !this.loading;
       console.log(this.methltype);
     },
-    submitseqs() {},
-    selectFile() {
-      console.log("this is file");
+    submitseqs() {
+      let dataForm = new FormData();
+      dataForm.append("file", this.fileList[0]);
+      dataForm.append("seq", strArr);
+      dataForm.append("email", this.email);
+      dataForm.append("modelName", "NCNR_CG_DP");
+
+      let seqdata = {
+        email: "344501734@qq.com",
+        modelName: "NCNR_CG",
+        seq: strArr,
+      };
+
+      console.log(seqdata);
+      uploadseq(seqdata).then((res) => {
+        console.log(res);
+      });
+    },
+
+    changestatue(info) {
+      let fileList = [...info.fileList];
+
+      // 1. Limit the number of uploaded files
+      //    Only to show two recent uploaded files, and old ones will be replaced by the new
+      fileList = fileList.slice(-1);
+      this.fileList = fileList;
+      console.log(this.fileList);
     },
     openimg() {
       this.isShowImg = !this.isShowImg;
@@ -165,7 +200,8 @@ export default {
 </script>
 <style scoped>
 .tool {
-  height: 1500px;
+  /* height: 1500px; */
+  margin-bottom: 150px;
 }
 .tool-up {
   width: 80%;
