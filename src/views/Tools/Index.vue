@@ -1,12 +1,12 @@
-<!--
+<!-- 
  * @Autor: Sakurag1_LSJ
- * @LastEditors: Sakurag1_LSJ
+ * @LastEditors: Lvshijie
 -->
 <template>
   <div class="tool">
-    <router-link to="/tools/Methylation"></router-link>
-    <!-- <router-link to="/tools/Expression"></router-link> -->
-    <router-view />
+    <!-- <router-link to="/tools/Methylation"></router-link> -->
+    <!-- <router-link to="/Expression"></router-link> -->
+    <!-- <router-view /> -->
   </div>
 </template>
 
@@ -35,7 +35,7 @@ export default {
       this.loading = !this.loading;
       console.log(this.methltype);
     },
-    submitseqs() {},
+    submitseqs() { },
     openimg() {
       this.isShowImg = !this.isShowImg;
       if (this.isShowImg) {
@@ -57,24 +57,28 @@ export default {
       }
     },
   },
-  created() {},
+  created() { },
 };
 </script>
 <style scoped>
 .tool {
   height: 1500px;
 }
+
 .tool-up {
   width: 80%;
   margin: 0 auto;
 }
+
 .top-text {
   text-align: center;
 }
+
 .showimg {
   cursor: zoom-in;
   /* width: 80%; */
 }
+
 .isopenimg {
   width: 90%;
   margin: 0 auto;

@@ -20,25 +20,62 @@
           for predicted transcription factors to the best hits in Arabidopsis
           thaliana in the result.
         </h3>
-        <div style="width: 70%">
-          <h2>Paste one sequence(3001bp) here 👇</h2>
+        <div style="width: 100%">
+          <!-- <h2>Paste one sequence(3001bp) here 👇</h2>
           <a-input-group compact>
             <a-input prefix=">" style="width: 50%" v-model="Seq1" />
             <a-input prefix=">" style="width: 50%" v-model="Seq2" />
-          </a-input-group>
-          <a-row style="text-align: center">
+          </a-input-group> -->
+
+          <a-row>
+            <a-col :span="12">
+              <h1 style="margin-top: 6px; font-weight: bold;">
+                PPI Prediction
+              </h1>
+              <div style="width: 80%">
+                <h3>
+                  In these models, the strength of plant core promoter(labels of samples) is defined as the ability to
+                  drive expression of a barcoded reporter gene in maize protoplasts with or without enhancer in dark.
+                </h3>
+                <a-select style="width: 240px" placeholder="-----Select Model-----" @change="PPIchangeTools">
+                  <a-select-option v-for="value in PPImodellist" :key="value" :value="value">
+                    {{ value }}
+                  </a-select-option>
+                </a-select>
+              </div>
+            </a-col>
+
+            <a-col :span="12">
+              <h1 style="margin-top: 6px; font-weight: bold">
+                PDI Prediction
+              </h1>
+              <div style="width: 80%">
+                <h3>
+                  In these models, the strength of plant core promoter(labels of samples) is defined as the ability to
+                  drive expression of a barcoded reporter gene in maize protoplasts with or without enhancer in dark.
+                </h3>
+                <a-select style="width: 240px" placeholder="-----Select Model-----" @change="PDIchangeTools">
+                  <a-select-option v-for="value in PDImodellist" :key="value" :value="value">
+                    {{ value }}
+                  </a-select-option>
+                </a-select>
+              </div>
+            </a-col>
+
+
+            </a-col>
+          </a-row>
+          <!-- <a-row style="text-align: center">
             <a-col :span="6">
               <h2 style="margin-top: 6px; font-weight: bold">
                 Or load it from disk:
               </h2>
             </a-col>
             <a-col :span="2" style="margin-top: 10px">
-              <a-upload
-                :file-list="fileList"
-                :before-upload="handleChange"
-                @change="changestatue"
-              >
-                <a-button> <a-icon type="upload" />Click to Upload </a-button>
+              <a-upload :file-list="fileList" :before-upload="handleChange" @change="changestatue">
+                <a-button>
+                  <a-icon type="upload" />Click to Upload
+                </a-button>
               </a-upload>
             </a-col>
             <a-col :span="5" style="margin-top: 5px">
@@ -48,38 +85,33 @@
               <a-input style="margin-left: -50px" v-model="email" />
             </a-col>
             <a-col :span="4" style="margin-top: 5px">
-              <a-button
-                style="margin-top: 6px"
-                type="primary"
-                block
-                @click="submitseqs"
-              >
+              <a-button style="margin-top: 6px" type="primary" block @click="submitseqs">
                 {{ uploading ? "Uploading" : "Start Upload" }}
               </a-button>
             </a-col>
-          </a-row>
+            </a-row> -->
         </div>
       </div>
     </div>
-    <div style="width: 80%; margin-left: 10%">
-      <h1 style="font-weight: bold">Output:</h1>
+    <!-- <div style="width: 80%; margin-left: 10%"> -->
+    <!-- <h1 style="font-weight: bold">Output:</h1> -->
 
-      <!-- <div class="contain" style="text-align: center; font-size: 30px">
+    <!-- <div class="contain" style="text-align: center; font-size: 30px">
         <a-table :columns="columns" :data-source="data" bordered>
           <template slot="name" slot-scope="text">
             <a>{{ text }}</a>
           </template>
         </a-table>
       </div> -->
-      <!-- <a-button
+    <!-- <a-button
         style="margin-top: 6px; width: 20%"
         type="primary"
         @click="submitseqs"
       >
         Dowload Results
       </a-button> -->
-      <hr />
-    </div>
+    <!-- <hr /> -->
+    <!-- </div> -->
     <!-- <div style="width: 80%; margin-left: 10%">
       <h3>
         We use Saliency to show contribution scores. The family assignment rules
@@ -107,13 +139,26 @@ export default {
       list1: [],
       InputSeqs: "",
       loading: true,
-      methltype: "CHG",
       isShowImg: false,
       fileList: [],
       email: "",
       Seq1: "",
       Seq2: "",
       uploading: false,
+      PPImodellist: [
+        "SHOOT1",
+        "EAR1",
+        "SHOOT2",
+        "EAR2",
+        "TASSEL",
+      ],
+      PDImodellist: [
+        "SHOOT1",
+        "EAR",
+        "SHOOT2",
+
+      ],
+      options: [{ value: "1" }, { value: "2" }],
       columns: [
         {
           title: "Chromosome",
@@ -174,6 +219,17 @@ export default {
       this.fileList = fileList;
       console.log(this.fileList);
     },
+    handleChange(value) {
+      console.log(`selected ${value}`);
+    },
+    PPIchangeTools(value) {
+      this.$router.push(`/Tools/PPI_${value}`);
+      console.log(value);
+    },
+    PDIchangeTools(value) {
+      this.$router.push(`/Tools/PDI_${value}`);
+      console.log(value);
+    },
     openimg() {
       this.isShowImg = !this.isShowImg;
       if (this.isShowImg) {
@@ -195,31 +251,36 @@ export default {
       }
     },
   },
-  created() {},
+  created() { },
 };
 </script>
 <style scoped>
 .tool {
   /* height: 1500px; */
-  margin-bottom: 150px;
+  margin-bottom: 250px;
 }
+
 .tool-up {
   width: 80%;
   margin: 0 auto;
 }
+
 .top-text {
   text-align: center;
 }
+
 .showimg {
   cursor: zoom-in;
   /* width: 80%; */
 }
+
 .isopenimg {
   width: 90%;
   margin: 0 auto;
   overflow-x: scroll;
   cursor: zoom-out;
 }
+
 th.column-money,
 td.column-money {
   text-align: right !important;

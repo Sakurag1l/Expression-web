@@ -1,11 +1,11 @@
 /*
  * @Autor: Sakurag1_LSJ
- * @LastEditors: Sakurag1_LSJ
+ * @LastEditors: Lvshijie
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-
+import PPI_SHOOT1 from '../views/Tools/PPI_SHOOT1.vue'
 Vue.use(VueRouter)
 import Router from 'vue-router'
 
@@ -33,6 +33,54 @@ const routes = [
     path: '/Expression',
     name: 'Expression',
     component: () => import('../views/Tools/Expression'),
+
+  },
+  {
+    path: '/Tools/PPI_SHOOT1',
+    name: 'PPI_SHOOT1',
+    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
+
+  },
+  {
+    path: '/Tools/PPI_EAR1',
+    name: 'PPI_EAR1',
+    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
+
+  },
+  {
+    path: '/Tools/PPI_SHOOT2',
+    name: 'PPI_SHOOT2',
+    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
+
+  },
+  {
+    path: '/Tools/PPI_EAR2',
+    name: 'Shoot1',
+    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
+
+  },
+  {
+    path: '/Tools/PPI_TASSEL',
+    name: 'PPI_TASSEL',
+    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
+
+  },
+  {
+    path: '/Tools/PDI_SHOOT1',
+    name: 'PDI_SHOOT1',
+    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
+
+  },
+  {
+    path: '/Tools/PDI_EAR',
+    name: 'PDI_EAR',
+    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
+
+  },
+  {
+    path: '/Tools/PDI_SHOOT2',
+    name: 'PDI_SHOOT2',
+    component: () => import('../views/Tools/PPI_SHOOT1.vue'),
 
   },
   {

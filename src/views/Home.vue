@@ -1,30 +1,58 @@
 <!--
  * @Autor: Sakurag1_LSJ
- * @LastEditors: Sakurag1_LSJ
+ * @LastEditors: Lvshijie
 -->
 <template>
   <div class="home">
     <div id="components-layout-demo-basic">
       <div class="top-text" style="margin-top: 20px">
-        <p style="font-size: 20px">
-          &nbsp; &nbsp;&nbsp;&nbsp; MaizeDeepCBA is a web server that integrates
-          maize chromatin interaction and deep learning models for maize Gene
-          expression prediction. Based on the interaction between the proximal
-          and distal ends of the maize promoter, it predicts gene expression in
-          relevant target tissues. At the same time, MaizeDeepCBA can achieve
-          Gene expression prediction across tissues and genotypes. Based on
-          related computer vision methods, MaizeDeepCBA can mine important
-          segments, sites or motifs that affect Gene expression in the proximal
-          and distal interactions of promoters. Maize DeepCBA is freely
-          accessible for all users.
-        </p>
+        <a-row>
+          <a-col :span="12">
+            <div>
+              <p style="font-size: 20px">
+                &nbsp; &nbsp;&nbsp;&nbsp; MaizeDeepCBA is a web server that integrates
+                maize chromatin interaction and deep learning models for maize Gene
+                expression prediction. Based on the interaction between the proximal
+                and distal ends of the maize promoter, it predicts gene expression in
+                relevant target tissues. At the same time, MaizeDeepCBA can achieve
+                Gene expression prediction across tissues and genotypes. Based on
+                related computer vision methods, MaizeDeepCBA can mine important
+                segments, sites or motifs that affect Gene expression in the proximal
+                and distal interactions of promoters. Maize DeepCBA is freely
+                accessible for all users.
+              </p>
+            </div>
+          </a-col>
+          <a-col :span="12">
+            <div class="image-content" style="margin-top: 10px; width: 100%; text-align: center">
+              <img src="../img/home_1.jpg" style="width: 80%" />
+            </div>
+          </a-col>
+        </a-row>
+
+
+
+
+
       </div>
-      <div
-        class="image-content"
-        style="margin-top: 10px; width: 90%; text-align: center"
-      >
-        <img src="../img/exp_process.jpg" style="width: 80%" />
+      <div>
+        <a-row>
+          <a-col :span="12">
+            <div class="image-content" style="margin-top: 10px; width: 100%; text-align: center">
+              <img src="../img/home_2.jpg" style="width: 80%" />
+            </div>
+          </a-col>
+          <a-col :span="12">
+            <div class="image-content" style="margin-top: 50px; width: 100%; text-align: center">
+              <img src="../img/home_3.jpg" style="width: 80%" />
+            </div>
+          </a-col>
+        </a-row>
       </div>
+
+      <!-- <div class="image-content" style="margin-top: 10px; width: 90%; text-align: center">
+        <img src="../img/expression_fig1.jpg" style="width: 80%" />
+      </div> -->
       <div style="margin-top: 40px; margin-bottom: 50px">
         <p style="font-size: 20px">
           &nbsp; &nbsp;&nbsp;&nbsp;The DeepCBA framework includes a CNN module
@@ -66,24 +94,27 @@ export default {
     };
   },
   methods: {},
-  created() {},
+  created() { },
 };
 </script>
 <style scoped>
 #components-layout-demo-basic .ant-layout-content {
-  background: white;
+  background: rgb(255, 255, 255);
   color: black;
 }
 
 .home {
   /* text-align: center; */
   /* height: 1000px; */
+  /* background-color: rgb(0, 135, 172); */
   width: 80%;
   margin: 0 auto;
 }
+
 p::first-letter {
   font-size: 40px;
 }
+
 .top-text {
   display: flex;
   width: fit-content;
